@@ -1,10 +1,20 @@
-import React, { useState }from 'react'
-import "./style.css"
-import Menu from "./menuApi"
-import MenuCard from "./MenuCard"
+import React, { useState }from 'react';
+import "./style.css";
+import Menu from "./menuApi";
+import MenuCard from "./MenuCard";
+
+const uniqueList = [
+    ...new Set(
+        Menu.map((curElem) => {
+            return curElem.category;
+        })
+    ),
+];
+
+console.log(uniqueList);
 
 const Restaurant = () => {    
-    const [menuData, setMenuData] = useState(Menu)
+    const [menuData, setMenuData] = useState(Menu);
 
     const filterItem = (category) => {
         const updatedList = Menu.filter((curElem) => {
@@ -39,7 +49,7 @@ const Restaurant = () => {
                         </button>
                     <button 
                         className='btn-group__item' 
-                        onClick={() => filterItem("all")}>
+                        onClick={() => setMenuData(Menu)}>
                         All
                         </button>
                 </div>
